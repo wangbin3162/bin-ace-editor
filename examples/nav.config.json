@@ -6,10 +6,16 @@
       "desc": "介绍"
     },
     {
-      "name": "jsonEditor",
-      "path": "/jsonEditor",
+      "name": "editor",
+      "path": "/editor",
       "icon": "ios-list-box",
-      "desc": "JsonEditor 示例"
+      "desc": "编辑器示例"
+    },
+    {
+      "name": "options",
+      "path": "/options",
+      "icon": "ios-list-box",
+      "desc": "options配置项"
     }
   ]
 }

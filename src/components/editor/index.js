@@ -6,6 +6,7 @@ module.exports = {
     let height = this.height ? this.px(this.height) : '100%'
     let width = this.width ? this.px(this.width) : '100%'
     return h('div', {
+      'class': 'bin-ace-editor',
       style: {
         width,
         height,
@@ -37,15 +38,14 @@ module.exports = {
     },
     options: Object,
     readonly: Boolean,
-    showNumber: {
-      type: Boolean,
-      default: true
-    },
     wrap: {
       type: Boolean,
       default: false
     },
-    snippets: Boolean
+    snippets: {
+      type: Boolean,
+      default: true
+    }
   },
   data() {
     return {
@@ -148,7 +148,7 @@ module.exports = {
       enableLiveAutocompletion: this.snippets
     })
 
-    this.$emit('init', editor)
+    this.$emit('on-init', editor)
 
     if (this.value) {
       editor.setValue(this.value, 1)

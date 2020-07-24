@@ -1,7 +1,12 @@
 ## 介绍
 
 更新重构了代码编辑器组件和底层依赖，现已支持更多代码类型。并已正式更名为bin-ace-editor,
-原代码编辑器停止更新，保留至0.9.0版本。
+原代码编辑器`bin-code-editor`停止更新，保留至0.9.0版本。
+
+
+### 最新版本
+
+[![NPM version](https://img.shields.io/npm/v/bin-ace-editor.svg)](https://www.npmjs.com/package/bin-ace-editor)
 
 
 ### 相关链接
@@ -19,7 +24,7 @@
 
 ### CDN 安装
 
-通过[unpkg.com/bin-ace-editor](https://unpkg.com/bin-ace-editor/) 可以看到 bin-code-editor
+通过[unpkg.com/bin-ace-editor](https://unpkg.com/bin-ace-editor/) 可以看到 bin-ace-editor
 最新版本的资源，也可以切换版本选择需要的资源，在页面上引入 js 和 css
 文件即可开始使用：
 
@@ -29,7 +34,7 @@
 <!-- import stylesheet -->
 <link rel="stylesheet" href="https://unpkg.com/bin-ace-editor@0.1.0/lib/styles/index.css">
 <!-- import bin-ace-editor -->
-<script src="https://unpkg.com/bin-ace-editor@0.1.0/lib/bin-code-editor.min.js"></script>
+<script src="https://unpkg.com/bin-ace-editor@0.1.0/lib/bin-ace-editor.min.js"></script>
 ```
     
 `@0.1.0` 表示版本号，我们建议锁定版本号来保证代码的稳定性
