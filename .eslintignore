@@ -1,0 +1,5 @@
+examples/docs
+*.sh
+node_modules
+lib
+*.md

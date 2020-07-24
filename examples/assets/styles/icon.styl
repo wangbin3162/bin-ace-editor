@@ -1,0 +1,68 @@
+.demo-block {
+  .demo-icon {
+    margin-bottom: 10px;
+    > i {
+      color: #606266;
+      margin: 0 20px;
+      font-size: 1.5em;
+      vertical-align: middle;
+    }
+  }
+  .bin-button + .bin-button {
+    margin-left: 10px;
+  }
+}
+
+#app .main-cnt .page-container {
+  ul.icon-list {
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    min-height: 120px;
+    border: 1px solid #eaeefb;
+    li {
+      display: inline-block;
+      width: 16.7%;
+      text-align: center;
+      height: 120px;
+      line-height: 120px;
+      color: #666;
+      font-size: 13px;
+      margin-right: -1px;
+      margin-bottom: -1px;
+      i {
+        display: block;
+        font-size: 32px;
+        margin-bottom: 15px;
+        color: #606266;
+        transition: .15s linear;
+      }
+      &:hover {
+        span {
+          color: #5cb6ff;
+        }
+        i {
+          font-size: 40px;
+        }
+      }
+      span {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
+        font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
+        color: #99a9bf;
+        transition: color .15s linear;
+      }
+      .icon-name {
+        display: inline-block;
+        padding: 0 3px;
+        height: 1em;
+      }
+      &:after {
+        content: "";
+        height: 100%;
+      }
+    }
+  }
+}

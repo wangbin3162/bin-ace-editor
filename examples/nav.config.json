@@ -1,0 +1,15 @@
+{
+  "开发指南": [
+    {
+      "name": "guide",
+      "path": "/guide",
+      "desc": "介绍"
+    },
+    {
+      "name": "jsonEditor",
+      "path": "/jsonEditor",
+      "icon": "ios-list-box",
+      "desc": "JsonEditor 示例"
+    }
+  ]
+}

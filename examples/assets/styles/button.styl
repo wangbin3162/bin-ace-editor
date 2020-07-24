@@ -1,0 +1,27 @@
+.demo-block {
+  .demo-button {
+    margin-bottom: 10px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    .bin-button-group + .bin-button-group {
+      margin-left: 10px;
+    }
+  }
+  .bin-button + .bin-button {
+    margin-left: 10px;
+  }
+}
+
+.icon-loading {
+  animation: rotating 2s linear infinite;
+}
+
+@keyframes rotating {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}

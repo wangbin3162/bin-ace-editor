@@ -1,0 +1,70 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": false,
+        "targets": {
+          "browsers": [
+            "> 1%",
+            "last 2 versions",
+            "not ie <= 8"
+          ]
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "corejs": {
+          "version": 3,
+          "proposals": true
+        },
+        "useESModules": true
+      }
+    ],
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-transform-modules-commonjs"
+  ],
+  "env": {
+    "utils": {
+      "presets": [
+        [
+          "env",
+          {
+            "loose": true,
+            "modules": "commonjs",
+            "targets": {
+              "browsers": [
+                "> 1%",
+                "last 2 versions",
+                "not ie <= 8"
+              ]
+            }
+          }
+        ]
+      ],
+      "plugins": [
+        [
+          "module-resolver",
+          {
+            "root": [
+              "bin-ui"
+            ],
+            "alias": {
+              "bin-ui/src": "bin-ui/lib"
+            }
+          }
+        ]
+      ]
+    },
+    "test": {
+      "plugins": [
+        "istanbul"
+      ]
+    }
+  }
+}
