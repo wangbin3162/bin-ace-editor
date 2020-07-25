@@ -33,12 +33,10 @@
         <div class="pl-15">
           <div class="pl-15">
             <p>
-              行号：
-              <b-switch v-model="showNumber"/>
-              只读：
-              <b-switch v-model="readonly"/>
               文字大小：
               <b-input-number v-model="fontSize" :min="12" :max="16" size="small"/>
+              只读：
+              <b-switch v-model="readonly"/>
             </p>
             <p>皮肤：
               <b-radio-group v-model="theme">
@@ -80,8 +78,6 @@
       return {
         jsonStr: JSON.stringify(jsonData, null, 2),
         modal: false,
-        showNumber: true,
-        lint: true,
         readonly: false,
         theme: 'chrome',
         fontSize: 12,
