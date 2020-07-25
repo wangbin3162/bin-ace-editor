@@ -26,7 +26,12 @@ module.exports = merge(webpackBaseConfig, {
       commonjs2: 'vue',
       amd: 'vue'
     },
-    'brace': 'brace'
+    'brace': {
+      root: 'ace',
+      commonjs: 'brace',
+      commonjs2: 'brace',
+      amd: 'brace'
+    }
   },
   performance: {
     hints: false

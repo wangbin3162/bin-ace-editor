@@ -32,7 +32,13 @@ import Vue from 'vue';
 import Editor from 'bin-ace-editor';
 import App from './App.vue';
 
+// 按需引入需要的语言包皮肤等资源
+require('brace/ext/emmet') // 如果是lang=html时需引入
+require('brace/ext/language_tools') // language extension
 
+require('brace/mode/json')
+require('brace/snippets/json')
+require('brace/theme/chrome')
 // 注册组件后即可使用
 Vue.component(Editor.name, Editor)
 
@@ -44,8 +50,22 @@ new Vue({
 
 ### CDN 安装
 
-推荐使用npm方式来进行使用，这样可以更好的配合webpack进行构建，由于目前组件并未支持打包版本使用，故如你需要快速构建编辑器，这里推荐
-使用 [ace-builds](https://github.com/ajaxorg/ace-builds/) 进行创建，具体请参考官网
+快速构建一个编辑器需要依赖 [ace-builds](https://github.com/ajaxorg/ace-builds/) 构建，去下载对应资源放置到项目中或使用cdn
+
+```
+  <script src="../lib/bin-ace-editor/src-min-noconflict/ace.js"></script>
+  <script src="../lib/bin-ace-editor/src-min-noconflict/ext-beautify.js"></script>
+  <script src="../lib/bin-ace-editor/src-min-noconflict/ext-language_tools.js"></script>
+  <script src="../lib/bin-ace-editor/src-min-noconflict/mode-json.js"></script>
+  <script src="../lib/bin-ace-editor/src-min-noconflict/snippets/json.js"></script>
+
+  <script src="../lib/bin-ace-editor/bin-ace-editor.min.js"></script>
+```
+
+上面五个是依赖，根据需要实现的语言类型引入
+
+
+推荐使用npm方式来进行使用，这样可以更好的配合webpack进行构建
 
 ### 相关链接
 

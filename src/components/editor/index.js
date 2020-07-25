@@ -89,7 +89,6 @@ module.exports = {
       }
     },
     theme(newTheme) {
-      require('brace/theme/' + newTheme)
       this.editor.setTheme('ace/theme/' + newTheme)
     },
     lang(newLang) {
@@ -123,14 +122,6 @@ module.exports = {
     let vm = this
     let lang = this.lang
     let theme = this.theme
-
-    if (lang === 'html') {
-      require('brace/ext/emmet')
-    }
-    require('brace/ext/language_tools') // language extension
-    require('brace/mode/' + lang)
-    require('brace/theme/' + theme)
-    require('brace/snippets/' + lang)
 
     let editor = vm.editor = ace.edit(this.$el)
     editor.getSession().setMode('ace/mode/' + lang)
