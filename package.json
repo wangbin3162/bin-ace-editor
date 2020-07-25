@@ -1,6 +1,6 @@
 {
   "name": "bin-ace-editor",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "基于vue的代码编辑器插件",
   "module": "src/components/editor/index.js",
   "keywords": [
