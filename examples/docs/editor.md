@@ -7,7 +7,7 @@
         <b-anchor-link href="#jie-hebin-ui-biao-dan" title="结合bin-ui表单"></b-anchor-link>
         <b-anchor-link href="#duo-chong-yu-fa-zhi-chi" title="多种语法支持"></b-anchor-link>
         <b-anchor-link href="#props" title="配置参数"></b-anchor-link>
-        <b-anchor-link href="#event" title="事件"></b-anchor-link>
+        <b-anchor-link href="#events" title="事件"></b-anchor-link>
       </b-anchor>
     </div>
 </template>
@@ -128,7 +128,7 @@
 <template>
  <b-form :model="template" ref="form" :rules="ruleValidate" :label-width="130">
     <b-form-item label="脚本" prop="tempSource">
-      <b-ace-editor v-model="template.tempSource" height="300"/>
+      <b-ace-editor v-model="template.tempSource" height="240"></b-ace-editor>
     </b-form-item>
     <b-form-item >
       <b-button type="primary" @click="handleSubmit">提交</b-button>
@@ -258,7 +258,6 @@ const jsonData = {
 const javascriptStr = `let a = 0;
 function add(){
   a ++;
-
 }
 add();
 console.log(a);`
@@ -401,7 +400,6 @@ const stylusStr = `.test{
 | 参数      | 说明    | 类型      | 可选值       | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |
 | value    | 绑定数据，可用v-model   | String  |  —   |   0  |
-| show-number   | 显示行号   | Boolean  |  —   |   true  |
 | lang   | 语言模式   | String  |  json/javascript/java/sql/elixir/html/css...   |   json  |
 | theme   | 皮肤样式   | String  | 'chrome','xcode','clouds', 'dracula'等  |   chrome  |
 | width    | 默认编辑器宽度  | String  |  —   |   100%  |
@@ -409,8 +407,9 @@ const stylusStr = `.test{
 | font-size | 字符大小   | Number  | -  |   12  |
 | readonly   | 只读模式   | Boolean  | -  |   false  |
 | wrap | 代码换行   | Boolean  | -  |   false  |
-| snippets |  代码片段提示自动填充   | Boolean  | -  | true  |
+| snippets |  代码片段提示自动填充   | Boolean  | -  | false  |
 | options    | 其他配置项  | Object  |  —  |  —  |
+| styles    | 样式覆盖，可以设置无边框间距等，如需要更改不同主题的颜色，则需要一些额外的样式覆盖  | Object  |  —  |  —  |
 
 ### Events
 

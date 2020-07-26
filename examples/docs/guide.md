@@ -53,13 +53,13 @@ new Vue({
 快速构建一个编辑器需要依赖 [ace-builds](https://github.com/ajaxorg/ace-builds/) 构建，去下载对应资源放置到项目中或使用cdn
 
 ```
-  <script src="../lib/bin-ace-editor/src-min-noconflict/ace.js"></script>
-  <script src="../lib/bin-ace-editor/src-min-noconflict/ext-beautify.js"></script>
-  <script src="../lib/bin-ace-editor/src-min-noconflict/ext-language_tools.js"></script>
-  <script src="../lib/bin-ace-editor/src-min-noconflict/mode-json.js"></script>
-  <script src="../lib/bin-ace-editor/src-min-noconflict/snippets/json.js"></script>
+<script src="../lib/bin-ace-editor/src-min-noconflict/ace.js"></script>
+<script src="../lib/bin-ace-editor/src-min-noconflict/ext-beautify.js"></script>
+<script src="../lib/bin-ace-editor/src-min-noconflict/ext-language_tools.js"></script>
+<script src="../lib/bin-ace-editor/src-min-noconflict/mode-json.js"></script>
+<script src="../lib/bin-ace-editor/src-min-noconflict/snippets/json.js"></script>
 
-  <script src="../lib/bin-ace-editor/bin-ace-editor.min.js"></script>
+<script src="../lib/bin-ace-editor/bin-ace-editor.min.js"></script>
 ```
 
 上面五个是依赖，根据需要实现的语言类型引入
