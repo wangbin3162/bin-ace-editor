@@ -1,6 +1,6 @@
 {
   "name": "bin-ace-editor",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "基于vue的代码编辑器插件",
   "main": "lib/bin-ace-editor.common.js",
   "module": "src/components/editor/index.vue",
@@ -27,13 +27,13 @@
   },
   "license": "MIT",
   "dependencies": {
-    "bin-ui": "^3.5.11",
     "brace": "^0.11.1"
   },
   "peerDependencies": {
     "vue": "^2.6.10"
   },
   "devDependencies": {
+    "bin-ui": "^3.6.0",
     "@babel/core": "^7.6.4",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
