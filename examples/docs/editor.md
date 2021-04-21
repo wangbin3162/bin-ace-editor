@@ -49,7 +49,7 @@
               <b-button type="primary" @click="modal = true">弹窗编辑</b-button>
               <b-button type="primary" @click="handleZip">压缩</b-button>
               <b-button type="primary" @click="handleFormat">格式化</b-button>
-              <b-modal v-model="modal" title="弹窗编辑">
+              <b-modal v-model="modal" title="弹窗编辑" transition-name="fade-down">
                 <b-ace-editor v-model="jsonStr" height="400"></b-ace-editor>
               </b-modal>
             </div>

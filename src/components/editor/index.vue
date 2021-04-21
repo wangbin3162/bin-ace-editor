@@ -106,15 +106,15 @@ export default {
       this.editor.setFontSize(newSize) // 设置文字大小
     },
     readonly(val) {
-      this.editor.setFontSize(val) // 设置只读
+      this.editor.setReadOnly(val) // 设置只读
     },
     height() {
-      this.$nextTick(function () {
+      this.$nextTick(() => {
         this.editor.resize()
       })
     },
     width() {
-      this.$nextTick(function () {
+      this.$nextTick(() => {
         this.editor.resize()
       })
     }
