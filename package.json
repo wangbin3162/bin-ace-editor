@@ -68,7 +68,7 @@
     "markdown-it-container": "^2.0.0",
     "mini-css-extract-plugin": "^0.8.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
-    "postcss": "^7.0.27",
+    "postcss": "^8.2.10",
     "postcss-loader": "^3.0.0",
     "progress-bar-webpack-plugin": "^1.12.1",
     "style-loader": "^1.0.0",
