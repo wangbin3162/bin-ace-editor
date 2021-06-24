@@ -1,7 +1,7 @@
 {
   "name": "bin-ace-editor",
   "description": "基于vue的代码编辑器插件",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "keywords": [
     "bin-ace-editor",
     "vue3",
@@ -13,9 +13,8 @@
     "src"
   ],
   "main": "lib/index.common.js",
-  "module": "lib/index.esm.js",
+  "module": "src/components/editor/index.vue",
   "unpkg": "lib/index.global.js",
-  "style": "lib/styles/index.css",
   "homepage": "https://wangbin3162.gitee.io/bin-ace-editor/",
   "private": false,
   "license": "MIT",
