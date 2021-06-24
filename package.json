@@ -22,7 +22,7 @@
   "scripts": {
     "dev": "webpack-dev-server --config build/webpack.dev.js",
     "build:demo": "rimraf docs && cross-env NODE_ENV=production webpack --config build/webpack.dev.js",
-    "build": "yarn clean-lib && yarn build:lib && yarn build:style",
+    "build": "yarn clean-lib && yarn build:lib",
     "clean-lib": "rimraf lib",
     "build:lib": "rollup --config ./build/rollup.config.js",
     "lint": "eslint ./src --ext .vue,.js,.ts",
