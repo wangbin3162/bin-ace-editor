@@ -1,25 +1,23 @@
-// 核心插件
-import corePlugin from './plugin/core'
-// 组件
 import Editor from './components/editor'
+import log from './utils/log'
 
-const components = [
-  Editor
-]
+const components = [Editor]
 
-const install = function (Vue) {
+import config from '../package.json'
+
+const version = config.version // version_ to fix tsc issue
+
+const install = function (app, options = {}) {
   components.forEach(component => {
-    Vue.component(component.name, component)
+    app.use(component)
   })
 
-  Vue.use(corePlugin)
+  if (!options.disabledDoc) {
+    log.pretty(`[${config.name}] ${config.version}`, config.homepage)
+  }
+  return app
 }
 
-/* istanbul ignore if */
-if (typeof window !== 'undefined' && window.Vue) {
-  install(window.Vue)
-}
+export { Editor }
 
-export default {
-  install, Editor
-}
+export default { version, install }

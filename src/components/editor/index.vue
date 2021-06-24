@@ -1,13 +1,14 @@
 <template>
-  <div class="bin-ace-editor" :style="wrapStyles"></div>
+  <div class="bin-ace-editor" :style="wrapStyles" />
 </template>
 
 <script>
-let ace = require('brace')
+import * as ace from 'brace'
+
 export default {
   name: 'BAceEditor',
   props: {
-    value: String,
+    modelValue: String,
     lang: {
       type: String,
       default: 'json'
@@ -48,6 +49,7 @@ export default {
       contentBackup: ''
     }
   },
+  emits: ['blur', 'init', 'update:modelValue', 'change'],
   computed: {
     wrapStyles() {
       return {
@@ -67,27 +69,10 @@ export default {
     },
     handleBlur(event) {
       this.$emit('blur', event)
-      // 触发校验
-      this.dispatch('BFormItem', 'form-blur', this.value)
-    },
-    dispatch(componentName, eventName, params) {
-      let parent = this.$parent || this.$root
-      let name = parent.$options.name
-
-      while (parent && (!name || name !== componentName)) {
-        parent = parent.$parent
-
-        if (parent) {
-          name = parent.$options.name
-        }
-      }
-      if (parent) {
-        parent.$emit.apply(parent, [eventName].concat(params))
-      }
     }
   },
   watch: {
-    value(val) {
+    modelValue(val) {
       if (this.contentBackup !== val) {
         this.editor.session.setValue(val, 1)
         this.contentBackup = val
@@ -119,7 +104,7 @@ export default {
       })
     }
   },
-  beforeDestroy() {
+  beforeUnmount() {
     this.editor.destroy()
     this.editor.container.remove()
   },
@@ -146,15 +131,15 @@ export default {
 
     this.$emit('init', editor)
 
-    if (this.value) {
-      editor.setValue(this.value, 1)
+    if (this.modelValue) {
+      editor.setValue(this.modelValue, 1)
       editor.gotoLine(0, 0, false)
     }
-    this.contentBackup = this.value
+    this.contentBackup = this.modelValue
 
     editor.on('change', function () {
       let content = editor.getValue()
-      vm.$emit('input', content)
+      vm.$emit('update:modelValue', content)
       vm.$emit('change', content)
       vm.contentBackup = content
     })

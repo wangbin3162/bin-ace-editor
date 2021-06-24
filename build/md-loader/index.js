@@ -1,11 +1,11 @@
 const {
   stripScript,
   stripTemplate,
-  genInlineComponentText
+  genInlineComponentText,
 } = require('./util')
 const md = require('./config')
 
-module.exports = function (source) {
+module.exports = function(source) {
   const content = md.render(source)
 
   const startTag = '<!--element-demo:'
@@ -28,7 +28,7 @@ module.exports = function (source) {
     const script = stripScript(commentContent)
     let demoComponentContent = genInlineComponentText(html, script)
     const demoComponentName = `element-demo${id}`
-    output.push(`<template slot="source"><${demoComponentName} /></template>`)
+    output.push(`<template #source><${demoComponentName} /></template>`)
     componenetsString += `${JSON.stringify(demoComponentName)}: ${demoComponentContent},`
 
     // 重新计算下一次的位置
@@ -40,9 +40,11 @@ module.exports = function (source) {
 
   // 仅允许在 demo 不存在时，才可以在 Markdown 中写 script 标签
   // todo: 优化这段逻辑
+
   let pageScript = ''
   if (componenetsString) {
     pageScript = `<script>
+      import * as Vue from 'vue';
       export default {
         name: 'component-doc',
         components: {
@@ -56,12 +58,13 @@ module.exports = function (source) {
   }
 
   output.push(content.slice(start))
-  return `
-    <template>
-      <section class="content element-doc">
-        ${output.join('')}
-      </section>
-    </template>
-    ${pageScript}
+  const result = `
+  <template>
+    <section class="content element-doc">
+      ${output.join('')}
+    </section>
+  </template>
+  ${pageScript}
   `
+  return result
 }

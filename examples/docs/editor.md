@@ -1,75 +1,67 @@
 ## Editor 编辑器
 
-<template>
-    <div class="global-anchor">
-      <b-anchor :scroll-offset="100">
-        <b-anchor-link href="#ji-chu-yong-fa" title="基础用法"></b-anchor-link>
-        <b-anchor-link href="#jie-hebin-ui-biao-dan" title="结合bin-ui表单"></b-anchor-link>
-        <b-anchor-link href="#duo-chong-yu-fa-zhi-chi" title="多种语法支持"></b-anchor-link>
-        <b-anchor-link href="#props" title="配置参数"></b-anchor-link>
-        <b-anchor-link href="#events" title="事件"></b-anchor-link>
-      </b-anchor>
-    </div>
-</template>
-
 ### 基础用法
 
 代码编辑器，默认支持多种语法，内部实现了按需引入，使用的时候只需要设置lang就可以，具体参数配置看以下代码
 
 ::: demo
+
 ```html
+
 <template>
-    <b-row>
-      <b-col span="12">
-        <b-ace-editor v-model="jsonStr"
-                      lang="json"
-                      width="100%"
-                      height="300"
-                      :theme="theme"
-                      :readonly="readonly"
-                      :font-size="fontSize"></b-ace-editor>
-      </b-col>
-      <b-col span="12">
+  <b-row>
+    <b-col span="12">
+      <b-ace-editor
+          v-model="jsonStr"
+          lang="json"
+          width="100%"
+          height="300"
+          :theme="theme"
+          :readonly="readonly"
+          :font-size="fontSize"
+      ></b-ace-editor>
+    </b-col>
+    <b-col span="12">
+      <div class="pl-15">
         <div class="pl-15">
-          <div class="pl-15">
-            <p>
-              文字大小：
-              <b-input-number v-model="fontSize" :min="12" :max="16" size="small"/>
-              只读：
-              <b-switch v-model="readonly"/>
-            </p>
-            <p>皮肤：
-              <b-radio-group v-model="theme">
-                <div>
-                  <b-radio v-for="item in themeList" :key="item" :label="item"></b-radio>
-                </div>
-              </b-radio-group>
-            </p>
-            <div style="padding: 8px 0;">
-              <b-button type="primary" @click="modal = true">弹窗编辑</b-button>
-              <b-button type="primary" @click="handleZip">压缩</b-button>
-              <b-button type="primary" @click="handleFormat">格式化</b-button>
-              <b-modal v-model="modal" title="弹窗编辑" transition-name="fade-down">
-                <b-ace-editor v-model="jsonStr" height="400"></b-ace-editor>
-              </b-modal>
-            </div>
+          <p>
+            文字大小：
+            <b-input-number v-model="fontSize" :min="12" :max="16" size="small" />
+            只读：
+            <b-switch v-model="readonly" />
+          </p>
+          <p>皮肤：
+            <b-radio-group v-model="theme">
+          <div>
+            <b-radio v-for="item in themeList" :key="item" :label="item"></b-radio>
+          </div>
+          </b-radio-group>
+          </p>
+          <div style="padding: 8px 0;">
+            <b-button type="primary" @click="modal = true">弹窗编辑</b-button>
+            <b-button type="primary" @click="handleZip">压缩</b-button>
+            <b-button type="primary" @click="handleFormat">格式化</b-button>
+            <b-modal v-model="modal" title="弹窗编辑">
+              <b-ace-editor v-model="jsonStr" height="400"></b-ace-editor>
+            </b-modal>
           </div>
         </div>
-      </b-col>
-    </b-row>
+      </div>
+    </b-col>
+  </b-row>
 </template>
 <script>
   const jsonData = {
-    title:'测试json数据',
-    child:[
-        {
-            title:'子项名称1',
-            desc:'子项描述1'
-        },
-        {
-            title:'子项名称2',
-            desc:'子项描述2'
-        }
+    title: '测试json数据',
+    child: [
+      {
+        title: '子项名称1',
+        desc: '子项描述1'
+      },
+      {
+        title: '子项名称2',
+        desc: '子项描述2'
+      }
     ]
   }
 
@@ -111,79 +103,7 @@
   }
 </script>
 ```
-:::
 
-### 结合bin-ui表单
-
-可以结合表单给出错误提示,需要有额外的样式覆盖
-
-```css
-.bin-form-item-error > .bin-form-item-content .bin-ace-editor {
-    border-color: #f5222d !important;
-}
-```
-
-::: demo
-```html
-<template>
- <b-form :model="template" ref="form" :rules="ruleValidate" :label-width="130">
-    <b-form-item label="脚本" prop="tempSource">
-      <b-ace-editor v-model="template.tempSource" height="240"></b-ace-editor>
-    </b-form-item>
-    <b-form-item >
-      <b-button type="primary" @click="handleSubmit">提交</b-button>
-    </b-form-item>
-  </b-form>
-</template>
-<script>
-  const jsonData = {
-    title:'测试json数据',
-    child:[
-        {
-            title:'子项名称1',
-            desc:'子项描述1'
-        },
-        {
-            title:'子项名称2',
-            desc:'子项描述2'
-        }
-    ]
-  }
-
-  export default {
-    data() {
-      const checkObj=(rule, value, callback)=>{
-        try {
-         if(JSON.parse(value.trim())){
-          callback()
-         }   
-        }catch (e) { 
-          callback('不是标准json')
-        }
-      } 
-      return {
-        ruleValidate: {
-          tempSource: [{ required: true, message: '必填项', trigger: 'blur' },{ validator:checkObj, trigger: 'blur' }]
-        },
-        template:{
-          tempSource:''
-        }   
-      }
-    },
-    methods: {
-      handleSubmit() {
-          this.$refs.form.validate((valid) => {
-            if (valid) {
-              this.$message({type:'success',content:'校验成功'})
-            }else{
-              this.$message({type:'danger',content:'校验失败'})
-            } 
-          })
-      }
-    }
-  }
-</script>
-```
 :::
 
 ### 多种语法支持
@@ -191,9 +111,11 @@
 支持多种常用语法设置，默认是按需加载
 
 ::: demo
+
 ```html
+
 <template>
-<div>
+  <div>
     <b-row :gutter="20">
       <b-col span="8">
         <b-tag type="primary">json</b-tag>
@@ -208,7 +130,7 @@
         <b-ace-editor v-model="markdownStr" height="300" lang="markdown" snippets></b-ace-editor>
       </b-col>
     </b-row>
-    <br/>
+    <br />
     <b-row :gutter="20">
       <b-col span="8">
         <b-tag type="primary">sql</b-tag>
@@ -223,7 +145,7 @@
         <b-ace-editor v-model="elixirStr" height="300" lang="elixir"></b-ace-editor>
       </b-col>
     </b-row>
-    <br/>
+    <br />
     <b-row :gutter="20">
       <b-col span="8">
         <b-tag type="primary">html</b-tag>
@@ -238,31 +160,31 @@
         <b-ace-editor v-model="stylusStr" height="300" lang="stylus"></b-ace-editor>
       </b-col>
     </b-row>
-</div>
+  </div>
 </template>
 <script>
-const jsonData = {
-    title:'测试json数据',
-    child:[
-        {
-            title:'子项名称1',
-            desc:'子项描述1'
-        },
-        {
-            title:'子项名称2',
-            desc:'子项描述2'
-        }
+  const jsonData = {
+    title: '测试json数据',
+    child: [
+      {
+        title: '子项名称1',
+        desc: '子项描述1'
+      },
+      {
+        title: '子项名称2',
+        desc: '子项描述2'
+      }
     ]
   }
 
-const javascriptStr = `let a = 0;
+  const javascriptStr = `let a = 0;
 function add(){
   a ++;
 }
 add();
 console.log(a);`
 
-const markdownStr = `# 一级标题
+  const markdownStr = `# 一级标题
 
 ## Markdown模式编辑
 
@@ -280,15 +202,15 @@ npm install b-code-editor
 \`\`\`
 `
 
-const sqlStr = 'SELECT * from sys_user where user_name = \'test\''
+  const sqlStr = 'SELECT * from sys_user where user_name = \'test\''
 
-const javaStr = `public class Test {
+  const javaStr = `public class Test {
     public static void main(String[] args) {
         System.out.println("hello word");
     }
 }`
 
-const elixirStr = `{
+  const elixirStr = `{
  "query": {
       "bool": {
         {{#gatherDept}}
@@ -348,7 +270,7 @@ const elixirStr = `{
   }
 }`
 
-const htmlStr = `<!DOCTYPE html>
+  const htmlStr = `<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -365,11 +287,11 @@ const htmlStr = `<!DOCTYPE html>
 </body>
 </html>`
 
-const cssStr = `.test{
+  const cssStr = `.test{
   font-size: 12px;
 }`
 
-const stylusStr = `.test{
+  const stylusStr = `.test{
   font-size: 12px;
   .child{
     border: 1px solid #1089ff;
@@ -393,6 +315,7 @@ const stylusStr = `.test{
   }
 </script>
 ```
+
 :::
 
 ### Props

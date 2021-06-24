@@ -1,18 +1,18 @@
-const { compileTemplate } = require('@vue/component-compiler-utils')
-const compiler = require('vue-template-compiler')
+/* eslint-disable @typescript-eslint/no-var-requires */
+const { compileTemplate, TemplateCompiler } = require('@vue/compiler-sfc')
 
-function stripScript (content) {
+function stripScript(content) {
   const result = content.match(/<(script)>([\s\S]+)<\/\1>/)
   return result && result[2] ? result[2].trim() : ''
 }
 
-function stripStyle (content) {
+function stripStyle(content) {
   const result = content.match(/<(style)\s*>([\s\S]+)<\/\1>/)
   return result && result[2] ? result[2].trim() : ''
 }
 
 // 编写例子时不一定有 template。所以采取的方案是剔除其他的内容
-function stripTemplate (content) {
+function stripTemplate(content) {
   content = content.trim()
   if (!content) {
     return content
@@ -20,19 +20,27 @@ function stripTemplate (content) {
   return content.replace(/<(script|style)[\s\S]+<\/\1>/g, '').trim()
 }
 
-function pad (source) {
+function pad(source) {
   return source
     .split(/\r?\n/)
     .map(line => `  ${line}`)
     .join('\n')
 }
 
-function genInlineComponentText (template, script) {
+const templateReplaceRegex = /<template>([\s\S]+)<\/template>/g
+function genInlineComponentText(template, script) {
   // https://github.com/vuejs/vue-loader/blob/423b8341ab368c2117931e909e2da9af74503635/lib/loaders/templateLoader.js#L46
+  let source = template
+  if (templateReplaceRegex.test(source)) {
+    source = source.replace(templateReplaceRegex, '$1')
+  }
   const finalOptions = {
-    source: `<div>${template}</div>`,
+    source: `<div>${source}</div>`,
     filename: 'inline-component', // TODO：这里有待调整
-    compiler
+    compiler: TemplateCompiler,
+    compilerOptions: {
+      mode: 'function',
+    },
   }
   const compiled = compileTemplate(finalOptions)
   // tips
@@ -45,17 +53,20 @@ function genInlineComponentText (template, script) {
   if (compiled.errors && compiled.errors.length) {
     console.error(
       `\n  Error compiling template:\n${pad(compiled.source)}\n` +
-      compiled.errors.map(e => `  - ${e}`).join('\n') +
-      '\n'
+        compiled.errors.map(e => `  - ${e}`).join('\n') +
+        '\n',
     )
   }
   let demoComponentContent = `
-    ${compiled.code}
+    ${(compiled.code).replace('return function render','function render')}
   `
   // todo: 这里采用了硬编码有待改进
   script = script.trim()
   if (script) {
-    script = script.replace(/export\s+default/, 'const democomponentExport =')
+    script = script
+      .replace(/export\s+default/, 'const democomponentExport =')
+      .replace(/import ({.*}) from 'vue'/g, (s, s1) => `const ${s1} = Vue`)
+      .replace(/import ({.*}) from 'bin-ace-editor'/g, (s, s1) => `const ${s1} = require('bin-ace-editor')`)
   } else {
     script = 'const democomponentExport = {}'
   }
@@ -64,7 +75,6 @@ function genInlineComponentText (template, script) {
     ${script}
     return {
       render,
-      staticRenderFns,
       ...democomponentExport
     }
   })()`
@@ -75,5 +85,5 @@ module.exports = {
   stripScript,
   stripStyle,
   stripTemplate,
-  genInlineComponentText
+  genInlineComponentText,
 }
