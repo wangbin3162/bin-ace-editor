@@ -8,8 +8,6 @@ bin-ace-editor现已更新至3.0.0+版本，为适应vue3+ ，原支持vue2.6版
 
 ## 安装
 
-## 安装
-
 通过[unpkg.com/bin-ace-editor](https://unpkg.com/bin-ace-editor/) 可以看到 bin-ace-editor
 最新版本的资源，也可以切换版本选择需要的资源，在页面上引入 js 和 css
 文件即可开始使用：

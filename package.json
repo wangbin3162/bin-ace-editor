@@ -1,7 +1,7 @@
 {
   "name": "bin-ace-editor",
   "description": "基于vue的代码编辑器插件",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "keywords": [
     "bin-ace-editor",
     "vue3",
@@ -48,7 +48,7 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
     "babel-plugin-transform-class-properties": "^6.24.1",
-    "bin-ui-next": "^0.3.8",
+    "bin-ui-next": "^0.3.9",
     "cross-env": "^7.0.2",
     "css-loader": "^4.2.2",
     "css-minimizer-webpack-plugin": "^1.1.5",
