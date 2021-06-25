@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { nextTick } from 'vue'
+import { LoadingBar } from 'bin-ui-next'
 import hljs from 'highlight.js'
 
 const navConfig = require('./nav.config.json')
@@ -35,14 +36,14 @@ const router = createRouter({
   routes,
 })
 router.beforeEach((to, from, next) => {
-  // BinUI.LoadingBar.start()
+  LoadingBar.start()
   next()
 })
 router.afterEach(async () => {
   await nextTick()
   const blocks = document.querySelectorAll('pre code:not(.hljs)')
-  Array.prototype.forEach.call(blocks, hljs.highlightBlock)
-  // BinUI.LoadingBar.done()
+  Array.prototype.forEach.call(blocks, hljs.highlightElement)
+  LoadingBar.done()
 })
 
 export default router

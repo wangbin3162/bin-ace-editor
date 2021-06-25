@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 const { compileTemplate, TemplateCompiler } = require('@vue/compiler-sfc')
 
 function stripScript(content) {

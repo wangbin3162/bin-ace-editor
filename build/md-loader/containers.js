@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 const mdContainer = require('markdown-it-container')
 
 module.exports = md => {

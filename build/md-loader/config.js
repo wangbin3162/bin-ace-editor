@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 const Config = require('markdown-it-chain')
 const anchorPlugin = require('markdown-it-anchor')
 const slugify = require('transliteration').slugify
