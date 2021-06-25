@@ -41,13 +41,12 @@ import { createApp } from 'vue'
 import Editor from 'bin-ace-editor';
 import App from './App.vue';
 
-// 按需引入需要的语言包皮肤等资源
-require('brace/ext/emmet') // 如果是lang=html时需引入
-require('brace/ext/language_tools') // language extension
-
-require('brace/mode/json')
-require('brace/snippets/json')
-require('brace/theme/chrome')
+import * as ace from 'brace'
+import 'brace/ext/emmet'
+import 'brace/ext/language_tools'
+import 'brace/mode/json'
+import 'brace/snippets/json'
+import 'brace/theme/chrome'
 const app = createApp(App)
 app.component(Editor.name, Editor)
 app.mount('#app', true)
