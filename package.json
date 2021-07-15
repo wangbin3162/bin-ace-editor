@@ -1,7 +1,7 @@
 {
   "name": "bin-ace-editor",
   "description": "基于vue的代码编辑器插件",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "keywords": [
     "bin-ace-editor",
     "vue3",
@@ -27,11 +27,8 @@
     "lint": "eslint ./src --ext .vue,.js,.ts",
     "lint-fix": "eslint --fix ./src --ext .vue,.js,.ts"
   },
-  "dependencies": {
-    "brace": "^0.11.1",
-    "highlight.js": "^11.0.1"
-  },
   "peerDependencies": {
+    "brace": "^0.11.1",
     "vue": "^3.0.5"
   },
   "devDependencies": {
@@ -60,6 +57,7 @@
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-cssmin": "^0.2.0",
+    "highlight.js": "^11.0.1",
     "gulp-stylus": "^2.7.0",
     "html-webpack-plugin": "^4.3.0",
     "markdown-it": "^12.0.4",
