@@ -10,10 +10,16 @@
       <div class="highlight">
         <slot name="highlight"></slot>
       </div>
+      <span class="expand-btn" @click="isExpanded = false">
+        收起代码&nbsp;
+        <i :class="iconClass"></i>
+      </span>
     </div>
-    <div class="demo-block-control"
-         ref="control"
-         @click="isExpanded = !isExpanded">
+    <div
+      class="demo-block-control"
+      ref="control"
+      @click="isExpanded = !isExpanded"
+    >
       <i :class="iconClass"></i>&nbsp;
       <span>{{ controlText }}</span>
     </div>
@@ -47,7 +53,7 @@ export default {
     codeAreaHeight() {
       if (this.$el.getElementsByClassName('description').length > 0) {
         return this.$el.getElementsByClassName('description')[0].clientHeight +
-            this.$el.getElementsByClassName('highlight')[0].clientHeight + 20
+          this.$el.getElementsByClassName('highlight')[0].clientHeight + 20
       }
       return this.$el.getElementsByClassName('highlight')[0].clientHeight
     },
@@ -79,11 +85,20 @@ export default {
     padding: 24px;
   }
   .meta {
+    position: relative;
     background-color: #fafafa;
     border-top: solid 1px #eaeefb;
     overflow: hidden;
     height: 0;
     transition: height .2s;
+    .expand-btn {
+      position: absolute;
+      top: 16px;
+      right: 24px;
+      font-size: 12px;
+      cursor: pointer;
+      color: #1089ff;
+    }
   }
   .description {
     padding: 10px;
@@ -137,8 +152,6 @@ export default {
     height: 44px;
     box-sizing: border-box;
     background-color: #fff;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
     text-align: center;
     margin-top: -1px;
     color: #d3dce6;

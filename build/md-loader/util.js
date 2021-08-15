@@ -65,7 +65,7 @@ function genInlineComponentText(template, script) {
     script = script
       .replace(/export\s+default/, 'const democomponentExport =')
       .replace(/import ({.*}) from 'vue'/g, (s, s1) => `const ${s1} = Vue`)
-      .replace(/import ({.*}) from 'bin-ace-editor'/g, (s, s1) => `const ${s1} = require('bin-ace-editor')`)
+      .replace(/import ({.*}) from 'bin-ace-editor'/g, (s, s1) => `const ${s1} = require('bin-editor')`)
   } else {
     script = 'const democomponentExport = {}'
   }

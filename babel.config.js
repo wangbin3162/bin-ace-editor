@@ -26,8 +26,8 @@ module.exports = {
         [
           'module-resolver',
           {
-            root: ['bin-ui-next'],
-            alias: { 'bin-ui-next/src': 'bin-ui-next/lib' },
+            root: ['bin-ace-editor'],
+            alias: { 'bin-ace-editor/src': 'bin-ace-editor/lib' },
           },
         ],
       ],

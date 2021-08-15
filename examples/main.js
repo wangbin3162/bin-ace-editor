@@ -2,16 +2,17 @@ import '@babel/polyfill'
 import { createApp } from 'vue'
 import router from './route'
 import App from './App.vue'
+import BinUI from 'bin-ui-next'
+import 'bin-ui-next/lib/styles/normalize.css'
+import 'bin-ui-next/lib/styles/index.css'
+import './assets/styles/index.styl'
 
 import DemoBlock from './components/demo-block.vue'
 import MainFooter from './components/footer.vue'
 import MainHeader from './components/header.vue'
 import SideNav from './components/side-nav.vue'
-import './assets/styles/color-brewer.css'
-import './assets/styles/index.styl'
+// 自定义组件库内容
 
-import BinUI from 'bin-ui-next'
-import 'bin-ui-next/lib/styles/index.css'
 // 当前组件的引入
 import Editor from '../src/components/editor'
 
@@ -53,7 +54,7 @@ import 'brace/theme/terminal'
 import 'brace/theme/vibrant_ink'
 
 const app = createApp(App)
-app.use(BinUI) // , { disabledDoc: true }
+app.use(BinUI, { disabledDoc: true })
 app.config.productionTip = false
 
 app.component('DemoBlock', DemoBlock)

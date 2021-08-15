@@ -1,8 +1,8 @@
 <template>
   <div id="app" ref="scrollBox">
-    <main-header />
+    <main-header/>
     <div class="main-cnt">
-      <side-nav class="nav" />
+      <side-nav class="nav"/>
       <div class="page-container" ref="containerRef">
         <div class="global-anchor" v-if="anchors.length">
           <b-scrollbar>
@@ -16,8 +16,8 @@
             </b-anchor>
           </b-scrollbar>
         </div>
-        <router-view />
-        <main-footer />
+        <router-view/>
+        <main-footer/>
       </div>
       <b-back-top></b-back-top>
     </div>
@@ -27,6 +27,8 @@
 <script>
 import { watch, ref, onMounted, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
+
+const cfg = require('/package.json')
 
 export default {
   name: 'App',
@@ -39,7 +41,7 @@ export default {
     watch(() => route.path, () => {
       anchors.value = []
       if (route.meta.desc) {
-        document.title = route.meta.desc + ' - Bin Ace Editor'
+        document.title = route.meta.desc + ' | ' + cfg.name.toUpperCase()
         document.scrollingElement.scrollTop = 0
       }
       nextTick(() => {
@@ -53,13 +55,17 @@ export default {
       if (!content) return
       const h3 = content.querySelectorAll('h3')
       anchors.value = Array.from(h3).map(item => {
-        const text = item.childNodes[1]?.textContent.trim()
+        const text = item.innerText.trim()
         const id = item.getAttribute('id')
         return { id, text }
       })
     }
 
     onMounted(() => {
+      if (route.meta.desc) {
+        document.title = route.meta.desc + ' | ' + cfg.name.toUpperCase()
+        document.scrollingElement.scrollTop = 0
+      }
       fetchAnchors()
     })
 
@@ -76,6 +82,7 @@ export default {
 #app {
   width: 100%;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 .main-cnt {
   padding-top: 80px;

@@ -92,7 +92,7 @@ const config = {
     inline: true,
     hot: true,
     stats: 'minimal',
-    port: 8085,
+    port: 8087,
     publicPath: '/',
     contentBase: __dirname,
     overlay: true,

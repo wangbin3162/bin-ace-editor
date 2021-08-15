@@ -1,68 +1,43 @@
 <template>
   <header class="page-header">
     <div class="header-container">
-      <div class="left" style="width: 480px;" flex="main:justify cross:center">
-        <div class="logo">Bin Ace Editor</div>
+      <div class="left" style="width: 580px" flex="main:justify cross:center">
+        <div class="logo">
+          <img src="../assets/images/logo/bin-ui-next-02.svg" class="icon" alt="icon"/>
+          <div class="text">
+            <h2>BIN-ACE-EDITOR</h2>
+            <p>code editor for vue3</p>
+          </div>
+        </div>
       </div>
-      <div class="link">
+      <div class="link-box">
+        <b-tooltip content="搜索组件">
+          <span class="search" @click="openSearch"><i class="b-iconfont b-icon-search"></i></span>
+        </b-tooltip>
         <router-link :to="{ name: 'guide' }" class="active">指南</router-link>
         <a
           href="https://github.com/wangbin3162/bin-ace-editor"
           class="github"
           target="_blank"
-        >GitHub</a
-        >
+        >GitHub</a>
       </div>
+      <search ref="searchRef"></search>
     </div>
   </header>
 </template>
 
 <script>
-import navConf from '../nav.config.json'
+import Search from './search'
 
 export default {
   name: 'MainHeader',
-  data() {
-    return {
-      components: [],
-    }
-  },
-  created() {
-    this.getComponentsOptions()
-  },
+  components: { Search },
   methods: {
-    getComponentsOptions() {
-      let routes = []
-      Object.keys(navConf).forEach((header) => {
-        routes = routes.concat(navConf[header])
-      })
-
-      let addComponent = (router) => {
-        router.forEach((route) => {
-          if (route.items) {
-            addComponent(route.items)
-            routes = routes.concat(route.items)
-          } else {
-            // 如果是组件路由
-            if (['guide', 'install', 'start', 'theme', 'logs'].indexOf(route.name) === -1) {
-              this.components.push({
-                value: route.path,
-                label: route.desc,
-                icon: route.icon,
-              })
-            }
-          }
-        })
-      }
-      addComponent(routes)
+    openSearch() {
+      this.$refs.searchRef.handleOpen()
     },
-    handleComponentChange(val) {
-      if (!val || val.length === 0) {
-        return
-      }
-      if (this.$route.path !== val) {
-        this.$router.push(val)
-      }
+    handleCommand(name) {
+      this.$util.open(`https://github.com/wangbin3162/${name}`, true)
     },
   },
 }
@@ -87,19 +62,48 @@ export default {
     margin: 0 auto;
     height: 80px;
     .logo {
-      color: #1089ff;
+      display: flex;
+      align-items: center;
+      text-transform: uppercase;
       font-weight: bold;
       font-family: helvetica;
-      text-align: center;
       font-size: 40px;
-      margin-left: 30px
       height: 80px;
-      line-height: 80px;
-      background-size: 220px 80px;
+      padding-left: 24px;
+      .icon {
+        width: 54px;
+        height: 54px;
+      }
+      .text {
+        display: flex;
+        flex-direction: column;
+        height: 64px;
+        overflow: hidden;
+        margin-left: 18px;
+        h2 {
+          font-size: 28px;
+          line-height: 36px;
+        }
+        p {
+          font-size: 14px;
+          line-height: 24px;
+        }
+        img {
+          width: 100%;
+          opacity: .85;
+          transform: translate(-132px, -166px);
+        }
+      }
     }
-    .link {
+    .link-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       padding: 0 20px;
-      line-height: 80px;
+      height: 80px;
+      .search {
+        cursor: pointer;
+      }
       a {
         text-decoration: none;
         color: #1989fa;
@@ -109,6 +113,13 @@ export default {
         font-size: 15px;
         &.github {
           color: #636363;
+        }
+      }
+      > span {
+        padding: 0 20px;
+        color: rgba(0, 0, 0, .65);
+        i {
+          font-size: 18px;
         }
       }
     }

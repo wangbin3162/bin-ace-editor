@@ -64,7 +64,7 @@ function mergeConfig(baseConfig, configB) {
 }
 
 function createFileName(formatName) {
-  return `lib/index.${formatName}.js`
+  return `lib/bin-ace-editor${formatName}.js`
 }
 
 // es-bundle
@@ -75,7 +75,7 @@ const esBundleConfig = {
     }),
   ],
   output: {
-    file: createFileName('esm'),
+    file: createFileName('.esm'),
     format: 'es',
   },
 }
@@ -88,12 +88,12 @@ const esBrowserConfig = {
     }),
   ],
   output: {
-    file: createFileName('esm-browser'),
+    file: createFileName('.esm-browser'),
     format: 'es',
   },
 }
 
-// es-browser.prod
+// es-browser.min
 const esBrowserProdConfig = {
   plugins: [
     terser(),
@@ -102,7 +102,7 @@ const esBrowserProdConfig = {
     }),
   ],
   output: {
-    file: createFileName('esm-browser.prod'),
+    file: createFileName('.esm-browser.min'),
     format: 'es',
   },
 }
@@ -115,7 +115,7 @@ const cjsConfig = {
     }),
   ],
   output: {
-    file: createFileName('common'),
+    file: createFileName('.common'),
     format: 'cjs',
   },
 }
@@ -128,7 +128,7 @@ const cjsProdConfig = {
     }),
   ],
   output: {
-    file: createFileName('common.prod'),
+    file: createFileName('.common.min'),
     format: 'cjs',
   },
 }
@@ -142,7 +142,7 @@ const globalConfig = {
     }),
   ],
   output: {
-    file: createFileName('global'),
+    file: createFileName(''),
     format: 'iife',
     name,
   },
@@ -157,7 +157,7 @@ const globalProdConfig = {
     }),
   ],
   output: {
-    file: createFileName('global.prod'),
+    file: createFileName('.min'),
     format: 'iife',
     name,
   },
