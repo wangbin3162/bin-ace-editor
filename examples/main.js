@@ -14,7 +14,7 @@ import SideNav from './components/side-nav.vue'
 // 自定义组件库内容
 
 // 当前组件的引入
-import Editor from '../src/components/editor'
+import Editor from 'bin-ace-editor'
 
 import * as ace from 'brace'
 import 'brace/ext/emmet'
@@ -55,6 +55,7 @@ import 'brace/theme/vibrant_ink'
 
 const app = createApp(App)
 app.use(BinUI, { disabledDoc: true })
+app.use(Editor)
 app.config.productionTip = false
 
 app.component('DemoBlock', DemoBlock)
@@ -62,8 +63,6 @@ app.component('MainHeader', MainHeader)
 app.component('MainFooter', MainFooter)
 app.component('SideNav', SideNav)
 
-// 注册组件后即可使用
-app.component(Editor.name, Editor)
 app.use(router)
 // Mount when the route is ready
 router.isReady().then(() => {

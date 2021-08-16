@@ -10,7 +10,7 @@ const install = function (app, options = {}) {
   app.component(Editor.name, Editor)
 
   if (!options.disabledDoc) {
-    log.pretty(`[${config.name}] ${config.version}`, config.homepage)
+    log.printVersion(config.name, config.version, config.homepage, '#722ed1')
   }
   return app
 }

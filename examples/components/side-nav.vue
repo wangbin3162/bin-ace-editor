@@ -1,6 +1,9 @@
 <template>
-  <div class="side-nav">
-    <b-scrollbar>
+  <div class="side-nav" :class="{'show':showMenu}">
+    <span class="toggle" :style="{left:showMenu?'246px':'0'}" @click="toggleMenu" title="toggle menu">
+      <b-icon :name="showMenu?'left':'right'"></b-icon>
+    </span>
+    <b-scrollbar v-if="showMenu">
       <div v-for="title in (Object.keys(data))" class="group-container" :key="title">
         <p class="side-nav-title">{{ title }}</p>
         <div class="side-nav-items" v-for="(nav,index) in data[title]" :key="index">
@@ -27,10 +30,19 @@
 import navConf from '../nav.config.json'
 
 export default {
+  props: {
+    showMenu: Boolean,
+  },
+  emits: ['toggle'],
   data() {
     return {
       data: navConf,
     }
+  },
+  methods: {
+    toggleMenu() {
+      this.$emit('toggle')
+    },
   },
 }
 </script>
@@ -39,7 +51,7 @@ export default {
 .side-nav {
   position: fixed;
   top: 80px;
-  width: 260px;
+  width: 10px;
   height: calc(100vh - 80px);
   overflow: hidden;
   box-sizing: border-box;
@@ -47,8 +59,40 @@ export default {
   background-color: #fff;
   border-right: 1px solid #dcdee2;
   z-index: 99;
+  white-space: nowrap;
+  transition: width .15s ease;
+  &.show {
+    width: 256px;
+  }
+  .toggle {
+    position: fixed;
+    z-index: 100;
+    left: 246px;
+    top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 40px;
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+    transition: .15s ease;
+    opacity: 0;
+    &:hover {
+      border: 1px solid #1089ff;
+      i {
+        color: #1089ff;
+      }
+    }
+  }
   &:hover {
     overflow-y: auto;
+    .toggle {
+      opacity: 1;
+    }
   }
   &::-webkit-scrollbar {
     display: none;
@@ -114,12 +158,12 @@ export default {
       &::after {
         content: "";
         display: block;
-        width: 2px;
+        width: 3px;
         position: absolute;
         top: 0;
         bottom: 0;
-        right: 0;
-        background: #2d8cf0;
+        left: 0;
+        background: #1089ff;
       }
     }
   }
