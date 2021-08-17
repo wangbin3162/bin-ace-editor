@@ -2,6 +2,8 @@
 
 bin-ace-editor现已更新至3.0.0+版本，为适应vue3+ ，原支持vue2.6版本的editor已拉分支保存，最新保存版本为`2.0.0`版本
 
+[Document](https://wangbin3162.gitee.io/bin-ace-editor/#/guide)
+
 ### 最新版本
 
 [![NPM version](https://img.shields.io/npm/v/bin-ace-editor.svg)](https://www.npmjs.com/package/bin-ace-editor)
