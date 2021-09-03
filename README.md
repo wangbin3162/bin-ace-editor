@@ -1,9 +1,9 @@
 ## 介绍
 
-更新重构了代码编辑器组件和底层依赖，现已支持更多代码类型。并已正式更名为bin-ace-editor,
-原代码编辑器`bin-code-editor`停止更新，保留至0.9.0版本。
-
 [document](https://wangbin3162.gitee.io/bin-ace-editor/)
+
+现为了区分vue3依赖问题，新版编辑器已重新拉工程并命名为bin-editor-next，具体参考[新版文档](https://wangbin3162.gitee.io/bin-editor-next/)
+
 
 ### 最新版本
 
